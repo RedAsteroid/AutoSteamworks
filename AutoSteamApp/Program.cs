@@ -308,10 +308,10 @@ namespace AutoSteamApp
                                 }
                             }
 
-                            if (shouldStop)
-                            {
-                                break;
-                            }
+                            // if (shouldStop)
+                            // {
+                            //     break;
+                            // }
 
                             currentState = MemoryHelper.Read<byte>(mhw, offset_buttonPressState);
                         }
