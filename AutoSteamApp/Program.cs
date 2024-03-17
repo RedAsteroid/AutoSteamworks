@@ -219,6 +219,8 @@ namespace AutoSteamApp
                 var oldFuelValue = sd.NaturalFuel + sd.StoredFuel;
                 var fuelPerRound = 10;
 
+                var currentStoredFuelValue = sd.StoredFuel;
+
                 while (!shouldStop && !ct.IsCancellationRequested)
                 {
                     // Logger.LogInfo($"Gauge Data {sd.SteamGauge}!");
@@ -291,7 +293,7 @@ namespace AutoSteamApp
                             // no more fuel
                             if (currentState == (int)ButtonPressingState.EndOfGame)
                             {
-                                if (sd.NaturalFuel + (sd.StoredFuel * (Settings.ShouldConsumeAllFuel ? 1 : 0)) < fuelPerRound)
+                                if ((sd.NaturalFuel + (sd.StoredFuel * (Settings.ShouldConsumeAllFuel ? 1 : 0)) < fuelPerRound) && (currentStoredFuelValue == 0 || currentStoredFuelValue > sd.StoredFuel))
                                 {
                                     Logger.LogInfo(
                                         string.Format(
